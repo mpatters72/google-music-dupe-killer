@@ -3,6 +3,14 @@ import sys
 
 from gmusicapi import Mobileclient
 
+###### mike troubleshooting
+from gmusicapi.utils import utils
+print(utils.log_filepath)
+
+#Mobileclient.__init__(debug_logging=True)
+
+####
+
 try:
     import credentials
     # credentials.py is in .gitignore and can be shared with other scripts
@@ -130,7 +138,6 @@ def get_track_ids(tracks):
         track_ids.append(track['id'])
     return track_ids
 
-
 api = Mobileclient()
 logged_in = api.login(username, password, android_id)
 
@@ -150,3 +157,5 @@ if logged_in:
     else:
         print("I didn't find any duplicate tracks.")
     print("Thank you!")
+else:
+    print("I guess login failed?")

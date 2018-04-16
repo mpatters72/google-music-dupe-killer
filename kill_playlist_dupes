@@ -8,9 +8,15 @@ try:
     # credentials.py is in .gitignore and can be shared with other scripts
     username = credentials.username
     password = credentials.password
+    print("creds: ", credentials.username)
 except ImportError:
     username = 'username'
     password = 'password'
+    print("creds: ", username)
+except:
+    print("wha happen")
+else:
+    print("still don not know wha happen")
 
 try:
     # optionally hardcode id to workaround https://github.com/simon-weber/gmusicapi/issues/408
@@ -73,7 +79,7 @@ def query_yes_no(question, default="yes"):
                              "(or 'y' or 'n').\n")
 
 
-api = Mobileclient()
+api = Mobileclient(debug_logging=True)
 logged_in = api.login(username, password, android_id)
 
 if logged_in:
@@ -94,3 +100,5 @@ if logged_in:
                     print("Skipping " + playlist['name'])
 
     print("Thank you!")
+else:
+    print("I guess login failed?")
